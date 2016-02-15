@@ -252,7 +252,8 @@ $(TOOLS_H):
 
 # Make #!/system/bin/toolbox launchers for each tool.
 #
-SYMLINKS := $(addprefix $(TARGET_OUT)/bin/,$(ALL_TOOLS))
+exclude := mount
+SYMLINKS := $(addprefix $(TARGET_OUT)/bin/,$(filter-out $(exclude),$(ALL_TOOLS)))
 $(SYMLINKS): TOOLBOX_BINARY := $(LOCAL_MODULE)
 $(SYMLINKS): $(LOCAL_INSTALLED_MODULE) $(LOCAL_PATH)/Android.mk
 	@echo "Symlink: $@ -> $(TOOLBOX_BINARY)"
