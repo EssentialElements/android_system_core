@@ -651,3 +651,7 @@ service pre-recovery /system/bin/uncrypt
     class main
     disabled
     oneshot
+
+service sysinit /system/bin/logwrapper /system/xbin/busybox run-parts /system/etc/init.d
+    disabled
+    oneshot
