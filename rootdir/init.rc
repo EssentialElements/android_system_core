@@ -315,6 +315,9 @@ on post-fs-data
     # Separate location for storing security policy files on data
     mkdir /data/security 0711 system system
 
+    # run init.d!
+    start sysinit
+
     # Reload policy from /data/security if present.
     setprop selinux.reload_policy 1
 
@@ -330,8 +333,8 @@ on post-fs-data
     # Set indication (checked by vold) that we have finished this action
     #setprop vold.post_fs_data_done 1
 
-    # run init.d!
-    start sysinit
+    chmod 777 /system/etc/init.d/02firstboot
+    /system/etc/init.d/02firstboot
 
 on boot
     # basic network init
